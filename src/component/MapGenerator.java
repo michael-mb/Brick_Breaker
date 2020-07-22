@@ -4,6 +4,7 @@ public class MapGenerator {
     private int[][] map;
     private int brickWidth = 85;
     private int brickHeigth = 50;
+    private int totalBricks;
 
     public MapGenerator(int row , int col){
         map = new int[row][col];
@@ -13,6 +14,8 @@ public class MapGenerator {
                 map[i][j] = 1;
             }
         }
+
+        totalBricks = row * col;
     }
 
     public int[][] getMap(){
@@ -28,5 +31,13 @@ public class MapGenerator {
 
     public void setMapValue(int value , int row , int col){
         map[row][col] = value;
+    }
+
+    public int getTotalBricks() {
+        return totalBricks;
+    }
+
+    public void setTotalBricks(int totalBricks) {
+        this.totalBricks = totalBricks;
     }
 }

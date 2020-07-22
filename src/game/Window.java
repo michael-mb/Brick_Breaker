@@ -53,7 +53,9 @@ public class Window extends JFrame{
 		}
 
 		public void keyReleased(KeyEvent event) {
-
+			if(event.getKeyCode() == 32) {
+				myScene.start();
+			}
 		}
 		public void keyTyped(KeyEvent event) {}
 	}
