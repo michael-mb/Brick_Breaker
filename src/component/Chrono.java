@@ -7,7 +7,7 @@ public class Chrono implements Runnable {
 
 	private Scene scene ;
 	private boolean run = true  ;
-	private final int PAUSE = 100 ;
+	private final int PAUSE = 10 ;
 	
 	public Chrono(Scene scene) {
 		this.scene = scene ;
