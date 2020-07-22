@@ -2,6 +2,7 @@ package game;
 import component.Ball;
 import component.Breaker;
 import component.Chrono;
+import component.MapGenerator;
 
 import java.awt.*;
 
@@ -18,14 +19,14 @@ public class Scene extends JPanel{
 	private Chrono chrono;					// time
 	private Breaker breaker;
 	private Ball ball;
-	
+	private MapGenerator mapGenerator;
 	public Scene() {
 		
 		chrono = new Chrono(this);
 		breaker = new Breaker(WIDTH / 2 - 45 ,100 , 10);
 		ball = new Ball(30 , 30 , WIDTH / 2 - 10 , 200);
+		mapGenerator = new MapGenerator(4,5);
 		this.setBackground(Color.black);
-
 	}
 	
 	
@@ -35,8 +36,9 @@ public class Scene extends JPanel{
 		 drawLimits(g2);
 
 		 if(breaker.isInLife()){
-			 drawBall(g2);
 			 drawBreaker(g2);
+			 drawBricks(g2);
+			 drawBall(g2);
 		 }
 
 	}
@@ -54,8 +56,12 @@ public class Scene extends JPanel{
 
 	private void drawBall(Graphics2D g2){
 
-		g2.setColor(Color.white);
+		g2.setColor(Color.yellow);
 		g2.fillOval(ball.getPosX() , ball.getPosY() , ball.getWidth() , ball.getHeight());
+
+		g2.setStroke(new BasicStroke(3));
+		g2.setColor(Color.orange);
+		g2.drawOval(ball.getPosX() , ball.getPosY() , ball.getWidth() , ball.getHeight());
 
 		if(new Rectangle(ball.getPosX(),ball.getPosY(),ball.getWidth(),ball.getHeight())
 				.intersects(new Rectangle(breaker.getPosX(),HEIGHT - 10,breaker.getWidth(),breaker.getHeight()))){
@@ -76,6 +82,24 @@ public class Scene extends JPanel{
 		ball.setPosX(ball.getPosX() + ball.getDirectionX());
 		ball.setPosY(ball.getPosY() + ball.getDirectionY());
 
+	}
+
+	private void drawBricks(Graphics2D g2){
+		for(int i=0 ; i < mapGenerator.getMap().length; i++){
+			for (int j=0 ; j < mapGenerator.getMap()[0].length ; j++){
+				if(mapGenerator.getMap()[i][j] > 0) {
+					g2.setColor(Color.white);
+					g2.fillRect(j * mapGenerator.getBrickWidth() + 80 , i* mapGenerator.getBrickHeigth() + 50 ,
+							mapGenerator.getBrickWidth() , mapGenerator.getBrickHeigth());
+
+					g2.setStroke(new BasicStroke(3));
+					g2.setColor(Color.black);
+					g2.drawRect(j * mapGenerator.getBrickWidth() + 80 , i* mapGenerator.getBrickHeigth() + 50 ,
+							mapGenerator.getBrickWidth() , mapGenerator.getBrickHeigth());
+
+				}
+			}
+		}
 	}
 
 	public void moveLeft(){
