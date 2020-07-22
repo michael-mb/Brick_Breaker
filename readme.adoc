@@ -1,0 +1,9 @@
+= Snake
+
+This game was developed in Java with the IDE IntelliJ.
+
+== How to run the application?
+
+* In the IDE: find `Main.java`, right-click project, select "Run As > Java Application"
+* Press "Space" to start the Game
+image:brick.png[DEMO]
