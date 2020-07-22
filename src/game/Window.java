@@ -56,6 +56,10 @@ public class Window extends JFrame{
 			if(event.getKeyCode() == 32) {
 				myScene.start();
 			}
+			if(event.getKeyCode() == 82) {
+				myScene.reset();
+			}
+
 		}
 		public void keyTyped(KeyEvent event) {}
 	}

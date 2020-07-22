@@ -18,7 +18,8 @@ public class Scene extends JPanel{
 	private Ball ball;
 	private MapGenerator mapGenerator;
 	private Score score;
-	private Font Scorefont ;
+	private Font scorefont ;
+	private Font endFont;
 
 	public boolean startPressed;
 	public Scene() {
@@ -27,8 +28,10 @@ public class Scene extends JPanel{
 		breaker = new Breaker(WIDTH / 2 - 45 ,100 , 10);
 		ball = new Ball(30 , 30 , WIDTH / 2 - 10 , HEIGHT - 100);
 		mapGenerator = new MapGenerator(4,5);
-		Scorefont = new Font("Arial", Font.BOLD, 15);
+		scorefont = new Font("Arial", Font.BOLD, 15);
+		endFont = new Font("Arial" , Font.BOLD , 50);
 		score = new Score();
+
 		this.setBackground(Color.black);
 	}
 	
@@ -43,10 +46,10 @@ public class Scene extends JPanel{
 			 drawBreaker(g2);
 			 drawScore(g2);
 		 }else{
-		 	if(breaker.isInLife()){
-		 		// draw lose
+		 	if(!breaker.isInLife()){
+		 		drawLose(g2);
 			}else{
-		 		//draw win
+				drawWin(g2);
 			}
 		 }
 
@@ -134,10 +137,29 @@ public class Scene extends JPanel{
 	private void drawScore(Graphics2D g2) {
 
 		g2.setColor(Color.white);
-		g2.setFont(Scorefont);
-		g2.drawString(score.getMessage(), 10  ,HEIGHT - 10); // on affiche le score
+		g2.setFont(scorefont);
+		g2.drawString(score.getMessage(), 10  ,HEIGHT - 10);
 	}
 
+	private void drawLose(Graphics2D g2) {
+		g2.setColor(Color.RED);
+		g2.setFont(endFont);
+		g2.drawString("GAME OVER ! ", WIDTH/2 - 150  ,HEIGHT /2);
+		g2.drawString(score.getMessage(), WIDTH/2 - 180  ,HEIGHT /2 + 60);
+
+		g2.setFont(new Font("Arial" , Font.BOLD , 25));
+		g2.drawString("Press R to Retry", WIDTH/2 - 90  ,HEIGHT /2 + 100);
+	}
+
+	private void drawWin(Graphics2D g2) {
+		g2.setColor(Color.GREEN);
+		g2.setFont(endFont);
+		g2.drawString("WINNER ! ", WIDTH/2 - 150  ,HEIGHT /2);
+		g2.drawString(score.getMessage(), WIDTH/2 - 180  ,HEIGHT /2 + 60);
+
+		g2.setFont(new Font("Arial" , Font.BOLD , 25));
+		g2.drawString("Press R to Retry", WIDTH/2 - 90  ,HEIGHT /2 + 100);
+	}
 	public void moveLeft(){
 		if(breaker.getPosX() > 0)
 		breaker.setPosX( breaker.getPosX() - 10);
@@ -154,6 +176,14 @@ public class Scene extends JPanel{
 
 	public void stop(){
 		startPressed = false;
+	}
+
+	public void reset(){
+		startPressed = false;
+		breaker = new Breaker(WIDTH / 2 - 45 ,100 , 10);
+		ball = new Ball(30 , 30 , WIDTH / 2 - 10 , HEIGHT - 100);
+		mapGenerator = new MapGenerator(4,5);
+		score = new Score();
 	}
 
 	public boolean gameOver(){
