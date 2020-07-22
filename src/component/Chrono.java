@@ -29,12 +29,5 @@ public class Chrono implements Runnable {
 			}
 		}
 	}
-	
-	public boolean isRun() {
-		return run ;
-	}
-	public void setRun(boolean run) {
-		this.run = run ;
-	}
 
 }

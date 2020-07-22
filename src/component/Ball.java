@@ -29,16 +29,8 @@ public class Ball {
         return height;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
     public int getWidth() {
         return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
     }
 
     public int getPosY() {
@@ -48,7 +40,6 @@ public class Ball {
     public void setPosY(int posY) {
         this.posY = posY;
     }
-
 
     public int getDirectionX() {
         return directionX;

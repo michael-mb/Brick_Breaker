@@ -10,16 +10,16 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Scene extends JPanel{
 
-	private final int HEIGHT = 481; 		// Stage height
-	private final int WIDTH = 582;			// Stage Width
-	
-	private Chrono chrono;					// time
+	private final int HEIGHT = 481;
+	private final int WIDTH = 582;
+
+	private Chrono chrono;
 	private Breaker breaker;
 	private Ball ball;
 	private MapGenerator mapGenerator;
 	private Score score;
-	private Font scorefont ;
-	private Font endFont;
+	private final Font scoreFont;
+	private final Font endFont;
 
 	public boolean startPressed;
 	public Scene() {
@@ -28,7 +28,7 @@ public class Scene extends JPanel{
 		breaker = new Breaker(WIDTH / 2 - 45 ,100 , 10);
 		ball = new Ball(30 , 30 , WIDTH / 2 - 10 , HEIGHT - 100);
 		mapGenerator = new MapGenerator(4,5);
-		scorefont = new Font("Arial", Font.BOLD, 15);
+		scoreFont = new Font("Arial", Font.BOLD, 15);
 		endFont = new Font("Arial" , Font.BOLD , 50);
 		score = new Score();
 
@@ -137,7 +137,7 @@ public class Scene extends JPanel{
 	private void drawScore(Graphics2D g2) {
 
 		g2.setColor(Color.white);
-		g2.setFont(scorefont);
+		g2.setFont(scoreFont);
 		g2.drawString(score.getMessage(), 10  ,HEIGHT - 10);
 	}
 
