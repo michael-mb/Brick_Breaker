@@ -98,16 +98,16 @@ public class Scene extends JPanel{
 			for (int j=0 ; j < mapGenerator.getMap()[0].length ; j++){
 				if(mapGenerator.getMap()[i][j] > 0) {
 					g2.setColor(Color.white);
-					g2.fillRect(j * mapGenerator.getBrickWidth() + 80 , i* mapGenerator.getBrickHeigth() + 50 ,
-							mapGenerator.getBrickWidth() , mapGenerator.getBrickHeigth());
+					g2.fillRect(j * mapGenerator.getBrickWidth() + 80 , i* mapGenerator.getBrickHeight() + 50 ,
+							mapGenerator.getBrickWidth() , mapGenerator.getBrickHeight());
 
 					g2.setStroke(new BasicStroke(3));
 					g2.setColor(Color.black);
-					g2.drawRect(j * mapGenerator.getBrickWidth() + 80 , i* mapGenerator.getBrickHeigth() + 50 ,
-							mapGenerator.getBrickWidth() , mapGenerator.getBrickHeigth());
+					g2.drawRect(j * mapGenerator.getBrickWidth() + 80 , i* mapGenerator.getBrickHeight() + 50 ,
+							mapGenerator.getBrickWidth() , mapGenerator.getBrickHeight());
 
-					Rectangle brickRect = new Rectangle(j * mapGenerator.getBrickWidth() + 80 , i* mapGenerator.getBrickHeigth() + 50 ,
-							mapGenerator.getBrickWidth() , mapGenerator.getBrickHeigth()) ;
+					Rectangle brickRect = new Rectangle(j * mapGenerator.getBrickWidth() + 80 , i* mapGenerator.getBrickHeight() + 50 ,
+							mapGenerator.getBrickWidth() , mapGenerator.getBrickHeight()) ;
 					Rectangle ballRect = new Rectangle(ball.getPosX(),ball.getPosY(),ball.getWidth(),ball.getHeight());
 
 					if((brickRect).intersects( ballRect)){
