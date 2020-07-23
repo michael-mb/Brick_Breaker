@@ -8,32 +8,28 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class Window extends JFrame{
 
-	private Scene myScene ; 
-	private final int windowsWidth = 600 ;
-	private final int windowsHeight = 522 ;
-	public Window() {
+	private Scene myScene ;
 
+	public Window() {
 		initParts();
 		initWindow();
 		initListener();
-		
 		this.setVisible(true);
 	}
-	
-	
+
 	private void initParts() {
 		myScene = new Scene();
 	}
+
 	private void initWindow() {
 	
 		this.setTitle("Brick Breaker");
-		this.setSize(windowsWidth,windowsHeight);
+		this.setSize(600,522);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setAlwaysOnTop(false);
 		this.setLocationRelativeTo(null);
 		this.add(myScene , BorderLayout.CENTER);
-		
 	}
 	
 	private void initListener() {

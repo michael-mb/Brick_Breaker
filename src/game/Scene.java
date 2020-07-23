@@ -1,8 +1,6 @@
 package game;
 import component.*;
-
 import java.awt.*;
-
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -157,6 +155,7 @@ public class Scene extends JPanel{
 		g2.setFont(new Font("Arial" , Font.BOLD , 25));
 		g2.drawString("Press R to Retry", WIDTH/2 - 90  ,HEIGHT /2 + 100);
 	}
+
 	public void moveLeft(){
 		if(breaker.getPosX() > 0)
 		breaker.setPosX( breaker.getPosX() - 10);
