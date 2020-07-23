@@ -5,15 +5,12 @@ import java.awt.*;
 
 import javax.swing.JPanel;
 
-
-
 @SuppressWarnings("serial")
 public class Scene extends JPanel{
 
 	private final int HEIGHT = 481;
 	private final int WIDTH = 582;
 
-	private Chrono chrono;
 	private Breaker breaker;
 	private Ball ball;
 	private MapGenerator mapGenerator;
@@ -23,19 +20,18 @@ public class Scene extends JPanel{
 
 	public boolean startPressed;
 	public Scene() {
+		Chrono chrono = new Chrono(this);
 		startPressed = false;
-		chrono = new Chrono(this);
 		breaker = new Breaker(WIDTH / 2 - 45 ,100 , 10);
 		ball = new Ball(30 , 30 , WIDTH / 2 - 10 , HEIGHT - 100);
-		mapGenerator = new MapGenerator(4,5);
+		mapGenerator = new MapGenerator(5,8 , 55 , 30);
 		scoreFont = new Font("Arial", Font.BOLD, 15);
 		endFont = new Font("Arial" , Font.BOLD , 50);
 		score = new Score();
 
 		this.setBackground(Color.black);
 	}
-	
-	
+
 	public void paintComponent(Graphics g){
 		 super.paintComponent(g);
 		 Graphics2D g2 = (Graphics2D)g;
@@ -120,10 +116,11 @@ public class Scene extends JPanel{
 						ball.setDirectionY(ball.getDirectionY() * -1);
 						mapGenerator.setMapValue(0,i,j);
 						mapGenerator.setTotalBricks(mapGenerator.getTotalBricks() - 1);
-						score.setScore(score.getScore() +1 );
+						score.setScore(score.getScore() +5 );
+
 						if(ball.getPosX()  <= brickRect.x ||  ball.getPosX() + 1 >= brickRect.x + brickRect.width){
 							ball.setDirectionX( ball.getDirectionX() * -1);
-						}else{
+						}  else {
 							ball.setDirectionY(ball.getDirectionY() * -1);
 						}
 
@@ -182,7 +179,7 @@ public class Scene extends JPanel{
 		startPressed = false;
 		breaker = new Breaker(WIDTH / 2 - 45 ,100 , 10);
 		ball = new Ball(30 , 30 , WIDTH / 2 - 10 , HEIGHT - 100);
-		mapGenerator = new MapGenerator(4,5);
+		mapGenerator = new MapGenerator(5,8 , 55 , 30);
 		score = new Score();
 	}
 
